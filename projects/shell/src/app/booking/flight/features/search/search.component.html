@@ -1,0 +1,55 @@
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title">Flight Search</h2>
+  </div>
+
+  <div class="card-body">
+
+    <form>
+      <div class="form-group">
+        <label>From:</label>
+        <input [(ngModel)]="from" appCity name="from" class="form-control">
+      </div>
+
+      <div class="form-group">
+        <label>To:</label>
+        <input [(ngModel)]="to" name="to" class="form-control">
+      </div>
+      <div class="form-group">
+        <label>
+          <input [(ngModel)]="urgent" name="urgent" type="checkbox">
+          Urgent (When it's urgent it fails -- like in real life ;-))
+
+        </label>
+      </div>
+
+      <div class="form-group">
+        <button (click)="bookingFeature.search({ from, to, urgent })" [disabled]="!from || !to" class="btn btn-default">
+          Search
+        </button>
+      </div>
+    </form>
+
+  </div>
+</div>
+
+<div class="row">
+  @for (flight of bookingFeature.flights$ | async; track flight.id) {
+    <div class="col-xs-12 col-sm-6 col-md-4">
+      <app-flight-card
+        [item]="flight"
+        [(selected)]="basket[flight.id]"
+      />
+    </div>
+  }
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h2 class="card-title">Basket</h2>
+  </div>
+
+  <div class="card-body">
+    <pre>{{ basket | json }}</pre>
+  </div>
+</div>
