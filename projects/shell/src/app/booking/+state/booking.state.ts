@@ -145,8 +145,8 @@ export function injectBookingFeature() {
   const store = inject(Store);
 
   return {
-    flights$: store.select(bookingFeature.selectFlights),
-    activeFlight$: store.select(bookingFeature.selectActiveFlight),
+    flights: store.selectSignal(bookingFeature.selectFlights),
+    activeFlight: store.selectSignal(bookingFeature.selectActiveFlight),
     search: (filter: FlightFilter) => store.dispatch(
       bookingActions.flightsLoad(filter)
     ),

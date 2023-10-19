@@ -19,7 +19,6 @@ import { FlightFilter } from '../../logic/model/flight-filter';
 export class FlightFilterComponent {
   @Input() set filter(filter: FlightFilter) {
     this.inputFilterForm.setValue(filter);
-    // this.localStore.addFilter(filter);
   }
 
   @Output() searchTrigger = new EventEmitter<FlightFilter>();
